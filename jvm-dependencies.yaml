@@ -1,0 +1,444 @@
+options:
+  buildHeader: [
+    "load(\"@io_bazel_rules_scala//scala:scala_import.bzl\", \"scala_import\")",
+    "load(\"@io_bazel_rules_scala//scala:scala.bzl\", \"scala_library\", \"scala_binary\", \"scala_test\")"
+  ]
+  languages: [ "java", "scala:2.12.8" ]
+  resolverType: "coursier"
+  resolvers:
+    - id: "mavencentral"
+      type: "default"
+      url: https://repo.maven.apache.org/maven2/
+    - id: "hmrc"
+      type: "default"
+      url: https://hmrc.bintray.com/releases
+  strictVisibility: true
+  transitivity: runtime_deps
+  versionConflictPolicy: highest
+
+dependencies:
+  com.chuusai:
+    shapeless:
+      lang: scala
+
+  joda-time:
+    joda-time:
+      lang: java
+      version: "2.10.4"
+
+  io.grpc:
+    grpc:
+      lang: java
+      version: "1.20.0"
+      modules: [ "core", "netty" ]
+
+  io.circe:
+    circe:
+      lang: scala
+      modules: [ "core", "parser", "generic-extras", "testing", "java8" ]
+      version: "0.11.1"
+    circe-generic:
+      exports:
+        - "com.chuusai:shapeless"
+        - "org.typelevel:cats-core"
+        - "org.typelevel:cats-kernel"
+        - "org.typelevel:macro-compat"
+      lang: scala
+      version: "0.11.1"
+    circe-bson:
+      lang: scala
+      version: "0.3.0"
+    circe-optics:
+      lang: scala
+      version: "0.11.0"
+
+  io.get-coursier:
+    coursier:
+      lang: scala
+      modules: [ "", "cache" ]
+      version: "1.1.0-M7"
+
+  org.scalactic:
+    scalactic:
+      lang: scala
+      version: "3.0.5"
+
+  org.scalatest:
+    scalatest:
+      exports:
+        - "org.scalactic:scalactic"
+      lang: scala
+      version: "3.0.5"
+
+  org.slf4j:
+    slf4j:
+      lang: java
+      modules: [ "api", "simple" ]
+      version: "1.7.25"
+
+  ch.qos.logback:
+    logback-classic:
+      lang: java
+      modules: [ "" ]
+      version: "1.2.3"
+    logback-core:
+      lang: java
+
+  org.spire-math:
+    kind-projector:
+      lang: scala
+      version: "0.9.9"
+
+  org.typelevel:
+    cats:
+      lang: scala
+      modules: [ "free", "kernel", "macros" ]
+      version: "1.6.0"
+    cats-core:
+      exports:
+        - "org.typelevel:cats-kernel"
+      lang: scala
+      version: "1.6.0"
+    cats-effect:
+      lang: scala
+      version: "1.2.0"
+    macro-compat:
+      lang: scala
+    machinist:
+      lang: scala
+    jawn-parser:
+      lang: scala
+
+  co.fs2:
+    fs2:
+      lang: scala
+      modules: [ "core", "io" ]
+      version: "1.0.4"
+
+  org.http4s:
+    http4s:
+      lang: scala
+      exports:
+        - "io.chrisdavenport:vault"
+      modules: [
+        "core", "dsl", "circe", "blaze-server", "client", "blaze-client", "blaze-core", "prometheus-metrics", "server", "jawn"
+      ]
+      version: "0.20.0"
+
+  io.chrisdavenport:
+    vault:
+      lang: scala
+    log4cats:
+      lang: scala
+      modules: [ "core", "slf4j" ]
+      version: "0.3.0"
+    epimetheus:
+      lang: scala
+      version: "0.2.0"
+
+  com.github.pureconfig:
+    pureconfig:
+      lang: scala
+      modules: [ "", "generic", "core", "macros"]
+      version: "0.10.2"
+
+  com.ovoenergy:
+    fs2-kafka:
+      lang: scala
+      modules: [ "" ]
+      version: "0.19.4"
+
+  com.typesafe:
+    config:
+      lang: java
+      version: "1.3.3"
+
+  com.typesafe.scala-logging:
+    scala-logging:
+      lang: scala
+      version: "3.9.0"
+
+  com.typesafe.akka:
+    akka-actor:
+      lang: scala
+      version: "2.5.21"
+    akka-slf4j:
+      lang: scala
+      version: "2.5.21"
+    akka-testkit:
+      lang: scala
+      version: "2.5.21"
+    akka-stream:
+      lang: scala
+      version: "2.5.21"
+    akka-stream-testkit:
+      lang: scala
+      version: "2.5.21"
+    akka-http:
+      lang: scala
+      modules: [ "", "core" ]
+      version: "10.1.7"
+    akka-parsing:
+      lang: scala
+      version: "10.1.7"
+    akka-http-testkit:
+      lang: scala
+      version: "10.1.7"
+    akka-http-caching:
+      lang: scala
+      version: "10.1.7"
+    akka-stream-kafka:
+      lang: scala
+      exports:
+        - "org.apache.kafka:kafka-clients"
+      version: "0.22"
+
+  de.heikoseeberger:
+    akka-http-circe:
+      lang: scala
+      version: "1.23.0"
+
+  org.apache.kafka:
+    kafka-clients:
+      lang: java
+
+  io.prometheus:
+    simpleclient:
+      lang: java
+      version: "0.6.0"
+    simpleclient_hotspot:
+      lang: java
+      version: "0.6.0"
+    simpleclient_common:
+      lang: java
+      version: "0.6.0"
+
+  org.reactivemongo:
+    reactivemongo:
+      lang: scala
+      modules: [ "", "bson", "bson-macros" ]
+      version: "0.16.2"
+
+  org.javaswift:
+    joss:
+      lang: java
+      version: "0.10.2"
+
+  com.olegpy:
+    better-monadic-for:
+      lang: scala
+      version: "0.3.0-M4"
+
+  com.sksamuel.scrimage:
+    scrimage-core:
+      lang: scala
+      version: "2.1.8"
+
+  com.github.t3hnar:
+    scala-bcrypt:
+      lang: scala
+      version: "3.1"
+
+  com.github.blemale:
+    scaffeine:
+      lang: scala
+      version: "2.5.0"
+
+  com.github.ben-manes.caffeine:
+    caffeine:
+      lang: java
+      modules: [ "" ]
+
+  com.beachape:
+    enumeratum:
+      lang: scala
+      modules: [ "", "circe", "reactivemongo-bson" ]
+      exports:
+        - "com.beachape:enumeratum-macros"
+      version: "1.5.13"
+    enumeratum-macros:
+      lang: scala
+
+  com.github.julien-truffaut:
+    monocle:
+      modules: [ "core", "macro", "law" ]
+      lang: scala
+      version: "1.5.1-cats"
+
+  commons-io:
+    commons-io:
+      lang: java
+      version: "2.6"
+
+  com.thesamet.scalapb:
+    scalapb-runtime:
+      lang: scala
+      version: "0.8.4"
+
+  io.lettuce:
+    lettuce-core:
+      lang: java
+
+  com.github.gvolpe:
+    fs2-redis:
+      lang: scala
+      modules: [ "core", "effects", "streams", "log4cats" ]
+      version: "0.7.0"
+
+  org.asynchttpclient:
+    async-http-client:
+      lang: java
+      version: "2.5.3"
+
+  com.google.code.gson:
+    gson:
+      lang: java
+      version: "2.8.5"
+
+  org.scala-lang.modules:
+    scala-java8-compat:
+      lang: scala
+      version: "0.9.0"
+    scala-xml:
+      lang: scala
+    scala-parser-combinators:
+      lang: scala
+
+  javax.xml.bind:
+    jaxb-api:
+      lang: java
+      version: "2.3.1"
+
+  com.outr:
+    lucene4s:
+      lang: scala
+      version: "1.8.5"
+
+  org.apache.lucene:
+    lucene:
+      lang: java
+      modules: [ "core", "queries", "queryparser" ]
+
+  com.lihaoyi:
+    sourcecode:
+      lang: scala
+
+  org.tpolecat:
+    doobie:
+      lang: scala
+      version: "0.7.0-M3"
+      modules: [ "postgres", "hikari", "free" ]
+    doobie-core:
+      lang: scala
+      version: "0.7.0-M3"
+      exports:
+        - "org.typelevel:cats-free"
+        - "com.lihaoyi:sourcecode"
+
+  org.postgresql:
+    postgresql:
+      lang: java
+      version: "42.2.5"
+
+  com.github.scredis:
+    scredis:
+      lang: scala
+      version: "2.2.3"
+
+  org.mongodb.scala:
+    mongo-scala-driver:
+      lang: scala
+      version: "2.5.0"
+    mongo-scala-bson:
+      lang: scala
+      version: "2.5.0"
+
+  org.mongodb:
+    mongodb-driver-core:
+      lang: java
+    mongodb-driver-async:
+      lang: java
+    bson:
+      lang: java
+      version: "3.9.0"
+
+  uk.gov.hmrc:
+    emailaddress:
+      lang: scala
+      version: "3.2.0"
+  
+  io.netty:
+    netty-common:
+      lang: java
+      version: "4.1.34.Final"
+    netty-handler:
+      lang: java
+      version: "4.1.34.Final"
+    netty-transport:
+      lang: java
+      version: "4.1.34.Final"
+    netty-buffer:
+      lang: java
+      version: "4.1.34.Final"
+
+  org.scalaz:
+    scalaz-zio:
+      lang: scala
+      version: "0.2.7"
+    scalaz-zio-interop:
+      lang: scala
+      version: "0.2.7"
+      
+  io.github.jmcardon:
+    tsec:
+      lang: scala
+      modules: [ "common", "cipher-jca", "cipher-core" ]
+      version: "0.1.0-M3"
+
+  io.scalaland:
+    chimney:
+      lang: scala
+      version: "0.3.0"
+
+  com.github.agourlay:
+    cornichon:
+      lang: scala
+      modules: [ "scalatest", "core", "test-framework" ]
+      version: "0.16.3"
+
+  org.scalaj:
+    scalaj-http:
+      lang: scala
+      version: "2.4.1"
+
+  org.pegdown:
+    pegdown:
+      lang: java
+      version: "1.6.0"
+
+  io.monix:
+    monix:
+      lang: scala
+      modules: [ "eval", "execution" ]
+
+replacements:
+  org.scala-lang:
+    scala-library:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_library//:io_bazel_rules_scala_scala_library"
+    scala-reflect:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_reflect//:io_bazel_rules_scala_scala_reflect"
+    scala-compiler:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_compiler//:io_bazel_rules_scala_scala_compiler"
+
+  org.scala-lang.modules:
+    scala-parser-combinators:
+      lang: scala
+      target:
+        "@io_bazel_rules_scala_scala_parser_combinators//:io_bazel_rules_scala_scala_parser_combinators"
+    scala-xml:
+      lang: scala
+      target:
+        "@io_bazel_rules_scala_scala_xml//:io_bazel_rules_scala_scala_xml"
