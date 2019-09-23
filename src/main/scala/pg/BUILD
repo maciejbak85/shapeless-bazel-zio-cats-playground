@@ -4,7 +4,7 @@ scala_library(
      name = "ShapelessPG",
      srcs = ["ShapelessPG.scala"],
      deps = [
-             "//:Model",
+             "//src/main/scala/model:Model",
              "//3rdparty/jvm/com/chuusai:shapeless",
              "//3rdparty/jvm/joda_time:joda_time"
              ],
