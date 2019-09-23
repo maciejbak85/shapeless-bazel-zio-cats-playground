@@ -5,7 +5,7 @@ scala_binary(
     srcs = glob(["src/main/scala/ptest/*.scala"]),
     resources = [],
     deps = [
-        "ShapelessPG",
+        "//src/main/scala/pg:ShapelessPG",
         "Model",
         "//3rdparty/jvm/com/chuusai:shapeless",
         "//3rdparty/jvm/joda_time:joda_time"
@@ -16,15 +16,9 @@ scala_binary(
 
 scala_library(
     name = "Model",
-    srcs = ["src/main/scala/model/Model.scala"]
-)
-
-scala_library(
-    name = "ShapelessPG",
-    srcs = ["src/main/scala/pg/ShapelessPG.scala"],
-    deps = [
-             "Model",
-            "//3rdparty/jvm/com/chuusai:shapeless",
-            "//3rdparty/jvm/joda_time:joda_time"
-            ]
+    srcs = ["src/main/scala/model/Model.scala"],
+    visibility = [
+        "//src/main/scala/ptest:__pkg__",
+        "//src/main/scala/pg:__pkg__"
+        ],
 )
