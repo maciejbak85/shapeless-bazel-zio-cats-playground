@@ -1,6 +1,6 @@
 package ptest
 
-import io.baku.model.{Employee, IceCream}
+import model.{Employee, IceCream}
 import shapeless._
 import org.joda.time.DateTime
 
