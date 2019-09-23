@@ -2,7 +2,7 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library", "scala_binary", 
 
 scala_binary(
     name = "App",
-    srcs = glob(["src/main/scala/**/*.scala"]),
+    srcs = glob(["src/main/scala/ptest/*.scala"]),
     resources = [],
     deps = [
         "ShapelessPG",
@@ -21,7 +21,7 @@ scala_library(
 
 scala_library(
     name = "ShapelessPG",
-    srcs = ["src/main/scala/ptest/ShapelessPG.scala"],
+    srcs = ["src/main/scala/pg/ShapelessPG.scala"],
     deps = [
              "Model",
             "//3rdparty/jvm/com/chuusai:shapeless",
